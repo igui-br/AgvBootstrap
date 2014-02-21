@@ -1,5 +1,4 @@
 <?php
-
 namespace AgvBootstrap;
 
 return array(
@@ -15,10 +14,16 @@ return array(
             'formActions' => 'AgvBootstrap\Form\View\Helper\FormActions',
             'formRadio' => 'AgvBootstrap\Form\View\Helper\FormRadio',
             'formTextarea' => 'AgvBootstrap\Form\View\Helper\FormTextarea',
-            'navbar' => 'AgvBootstrap\View\Helper\Navigation\Navbar',
-            'alert' => 'AgvBootstrap\View\Helper\Alert',
             'formSelect' => 'AgvBootstrap\Form\View\Helper\FormSelect',
             'formElementErrors' => 'AgvBootstrap\Form\View\Helper\FormElementErrors',
-        ),
-    ),
+            'formSearchPanel' => 'AgvBootstrap\Form\View\Helper\FormSearchPanel',
+            'formSearchPortlet' => 'AgvBootstrap\Form\View\Helper\FormSearchPortlet',
+            'alert' => 'AgvBootstrap\View\Helper\Alert',
+            'panel' => 'AgvBootstrap\View\Helper\Panel',
+            'portlet' => 'AgvBootstrap\View\Helper\Portlet',
+            'tab' => 'AgvBootstrap\View\Helper\Tab',
+            'tileButton' => 'AgvBootstrap\View\Helper\TileButton',
+            'navbar' => 'AgvBootstrap\View\Helper\Navigation\Navbar'
+        )
+    )
 );
