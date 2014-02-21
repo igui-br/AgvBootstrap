@@ -1,7 +1,7 @@
 <?php
-namespace AgvBootstrap\Form\View\Helper;
+namespace AgvBootstrap\View\Helper;
 
-class FormSearchPortlet extends AbstractHelper
+class SearchPortlet extends AbstractHelper
 {
 
     /**
@@ -43,7 +43,7 @@ class FormSearchPortlet extends AbstractHelper
      * Set Form
      *
      * @param \Zend\Form\Form $form
-     * @return \AgvBootstrap\Form\View\Helper\FormSearchPortlet
+     * @return \AgvBootstrap\Form\View\Helper\SearchPortlet
      */
     public function setForm(\Zend\Form\Form $form)
     {
@@ -76,7 +76,7 @@ class FormSearchPortlet extends AbstractHelper
      * Set class
      *
      * @param string $class
-     * @return \AgvBootstrap\Form\View\Helper\FormSearchPortlet
+     * @return \AgvBootstrap\Form\View\Helper\SearchPortlet
      */
     public function setClass($class)
     {
