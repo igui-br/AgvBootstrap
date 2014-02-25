@@ -70,7 +70,7 @@ class Form extends ZendForm
     public function __invoke(FormInterface $form = null, $formType = null)
     {
         $this->setType($formType);
-        if (null == $formType) {
+        if (null != $form && null == $formType) {
             $class = $form->getAttribute('class');
             if (preg_match('/inline/i', $class))
                 $this->setType('inline');
