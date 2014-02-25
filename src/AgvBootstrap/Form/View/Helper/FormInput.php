@@ -15,45 +15,6 @@ class FormInput extends ZendFormInput
 {
 
     /**
-     * Attributes valid for the input tag
-     *
-     * @var array
-     */
-    protected $validTagAttributes = array(
-        'name' => true,
-        'accept' => true,
-        'alt' => true,
-        'autocomplete' => true,
-        'autofocus' => true,
-        'checked' => true,
-        'dirname' => true,
-        'disabled' => true,
-        'form' => true,
-        'formaction' => true,
-        'formenctype' => true,
-        'formmethod' => true,
-        'formnovalidate' => true,
-        'formtarget' => true,
-        'height' => true,
-        'list' => true,
-        'max' => true,
-        'maxlength' => true,
-        'min' => true,
-        'multiple' => true,
-        'pattern' => true,
-        'placeholder' => true,
-        'readonly' => true,
-        'required' => true,
-        'size' => true,
-        'src' => true,
-        'step' => true,
-        'type' => true,
-        'value' => true,
-        'width' => true,
-        'gridSize' => true,
-    );
-
-    /**
      * Render a form <input> element from the provided $element
      *
      * @param  ElementInterface $element
@@ -75,19 +36,44 @@ class FormInput extends ZendFormInput
         $attributes['type'] = $this->getType($element);
         $attributes['value'] = $element->getValue();
 
-        $size = $element->getAttribute('size');
-        if (empty($size)) {
+        if (! $element->hasAttribute('grid') && ! $element->hasAttribute('offset')) {
             return sprintf(
-                '<input %s%s', $this->createAttributesString($attributes),
+                '<input %s%s',
+                $this->createAttributesString($attributes),
                 $this->getInlineClosingBracket()
             );
         }
 
-        return sprintf(
-            //col-lg-%s col-md-%s col-sm-%s 
-            '<div class="col-xs-%s">
-                    <input %s%s
-                </div>', $size, //, $size, $size, $size,
+        $class = array();
+
+        if ($element->hasAttribute('grid')) {
+            $grid = $element->getAttribute('grid');
+
+            if (is_array($grid)) {
+                $class = array_merge($class, $grid);
+            } elseif (is_int($grid)) {
+                $class[] = sprintf('col-lg-%s col-md-%s col-sm-%s col-xs-%s', $grid, $grid, $grid, $grid);
+            } else {
+                $class[] = $grid;
+            }
+        }
+
+        if ($element->hasAttribute('offset')) {
+            $offset = $element->getAttribute('offset');
+
+            if (is_array($offset)) {
+                $class = array_merge($class, $offset);
+            } elseif (is_int($offset)) {
+                $class[] = sprintf('col-lg-offset-%s col-md-offset-%s col-sm-offset-%s col-xs-offset-%s', $offset, $offset, $offset, $offset);
+            } else {
+                $class[] = $offset;
+            }
+        }
+
+        $class = implode(' ', array_unique($class));
+
+        return sprintf('<div class="%s"><input %s%s</div>' . PHP_EOL,
+            $class,
             $this->createAttributesString($attributes),
             $this->getInlineClosingBracket()
         );
