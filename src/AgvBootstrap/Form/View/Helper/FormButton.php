@@ -1,5 +1,4 @@
 <?php
-
 namespace AgvBootstrap\Form\View\Helper;
 
 use Zend\Form\View\Helper\FormButton as ZendFormButton;
@@ -8,59 +7,6 @@ use Zend\Form\Exception;
 
 class FormButton extends ZendFormButton
 {
-
-    /**
-     * Invoke helper as functor
-     *
-     * Proxies to {@link render()}.
-     *
-     * @param  ElementInterface|null $element
-     * @param  null|string           $buttonContent
-     * @return string|FormButton
-     */
-    public function __invoke(ElementInterface $element = null, $buttonContent = null)
-    {
-        if (!$element) {
-            return $this;
-        }
-
-        return $this->render($element, $buttonContent);
-    }
-
-    /**
-     * Render a form <button> element from the provided $element,
-     * using content from $buttonContent or the element's "label" attribute
-     *
-     * @param  ElementInterface $element
-     * @param  null|string $buttonContent
-     * @throws Exception\DomainException
-     * @return string
-     */
-    public function render(ElementInterface $element, $buttonContent = null)
-    {
-        $openTag = $this->openTag($element);
-
-        if (null === $buttonContent) {
-            $buttonContent = $element->getLabel();
-            if (null === $buttonContent) {
-                throw new Exception\DomainException(sprintf(
-                    '%s expects either button content as the second argument, ' .
-                        'or that the element provided has a label value; neither found',
-                    __METHOD__
-                ));
-            }
-
-            if (null !== ($translator = $this->getTranslator())) {
-                $buttonContent = $translator->translate(
-                    $buttonContent, $this->getTranslatorTextDomain()
-                );
-            }
-        }
-
-        $escape = $this->getEscapeHtmlHelper();
-
-        return $openTag . $escape($buttonContent) . $this->closeTag();
-    }
 
     /**
      * Generate an opening button tag
@@ -77,8 +23,9 @@ class FormButton extends ZendFormButton
         }
 
         if (is_array($attributesOrElement)) {
+            $this->getClass($attributesOrElement);
             $attributes = $this->createAttributesString($attributesOrElement);
-            return sprintf('<button class="btn btn-default" %s>', $attributes);
+            return sprintf('<button %s>', $attributes);
         }
 
         if (!$attributesOrElement instanceof ElementInterface) {
@@ -103,10 +50,24 @@ class FormButton extends ZendFormButton
         $attributes['type']  = $this->getType($element);
         $attributes['value'] = $element->getValue();
 
+        $this->getClass($attributes);
+
         return sprintf(
-            '<button class="btn btn-default" %s>',
+            '<button %s>',
             $this->createAttributesString($attributes)
         );
     }
 
+    public function getClass(&$attributes)
+    {
+        $class = (key_exists('class', $attributes) ? $attributes['class'] : null);
+        if (!empty($class)) {
+            $class = explode(' ', $class);
+            array_unshift($class, 'btn', 'btn-default');
+
+            $attributes['class'] = implode(' ', array_unique($class));
+        } else {
+            $attributes['class'] = 'btn btn-default';
+        }
+    }
 }
