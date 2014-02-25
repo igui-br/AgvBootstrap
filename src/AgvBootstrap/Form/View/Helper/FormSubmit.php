@@ -31,8 +31,37 @@ class FormSubmit extends ZendFormSubmit
 
         $this->getClass($attributes);
 
+        $class = array();
+
+        if ($element->hasAttribute('grid')) {
+            $grid = $element->getAttribute('grid');
+
+            if (is_array($grid)) {
+                $class = array_merge($class, $grid);
+            } elseif (is_int($grid)) {
+                $class[] = sprintf('col-lg-%s col-md-%s col-sm-%s col-xs-%s', $grid, $grid, $grid, $grid);
+            } else {
+                $class[] = $grid;
+            }
+        }
+
+        if ($element->hasAttribute('offset')) {
+            $offset = $element->getAttribute('offset');
+
+            if (is_array($offset)) {
+                $class = array_merge($class, $offset);
+            } elseif (is_int($offset)) {
+                $class[] = sprintf('col-lg-offset-%s col-md-offset-%s col-sm-offset-%s col-xs-offset-%s', $offset, $offset, $offset, $offset);
+            } else {
+                $class[] = $offset;
+            }
+        }
+
+        $class = implode(' ', array_unique($class));
+
         return sprintf(
-            '<input %s%s',
+            '<div class="%s"><input %s%s</div>' . PHP_EOL,
+            $class,
             $this->createAttributesString($attributes),
             $this->getInlineClosingBracket()
         );
