@@ -193,6 +193,28 @@ class TileButton extends AbstractHelper
         return $this->refresh;
     }
 
+    /**
+     * Reset attributes
+     *
+     * @return \AgvBootstrap\View\Helper\Tab
+     */
+    protected function reset()
+    {
+        $this->background = 'bg-light-gray';
+        $this->hidden = false;
+        $this->icon = null;
+        $this->id = null;
+        $this->indent = null;
+        $this->refresh = false;
+        $this->route = null;
+        $this->target = null;
+        $this->title = null;
+        $this->url = '#';
+        $this->value = null;
+
+        return $this;
+    }
+
     protected function render()
     {
         $html = '';

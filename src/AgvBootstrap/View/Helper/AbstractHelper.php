@@ -181,11 +181,17 @@ abstract class AbstractHelper extends AbstractHtmlElement
      */
     public function __invoke(array $options = null)
     {
+        $this->reset();
         if (null != $options)
             $this->setOptions($options);
 
         return $this->render();
     }
+
+    /**
+     * Reset properties object
+     */
+    abstract protected function reset();
 
     /**
      * Render HTML

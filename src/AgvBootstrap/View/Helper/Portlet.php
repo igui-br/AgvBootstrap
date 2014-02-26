@@ -164,6 +164,27 @@ class Portlet extends AbstractHelper
         return $this->collapse;
     }
 
+    /**
+     * Reset attributes
+     *
+     * @return \AgvBootstrap\View\Helper\Panel
+     */
+    protected function reset()
+    {
+        $this->class = array('portlet');
+        $this->titleSize = 4;
+        $this->title = null;
+        $this->body = null;
+        $this->footer = null;
+        $this->collapse = 'in';
+        $this->indent = null;
+        $this->hidden = false;
+        $this->background = null;
+        $this->id = null;
+
+        return $this;
+    }
+
     protected function render()
     {
         $html = '';

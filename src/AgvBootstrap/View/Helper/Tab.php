@@ -168,6 +168,28 @@ class Tab extends AbstractHelper
         return $class;
     }
 
+    /**
+     * Reset attributes
+     *
+     * @return \AgvBootstrap\View\Helper\Tab
+     */
+    protected function reset()
+    {
+        $this->class = array('tabbable');
+        $this->title = null;
+        $this->collapse = 'in';
+        $this->indent = null;
+        $this->hidden = false;
+        $this->background = null;
+        $this->id = null;
+        $this->classTab = array('tab-pane');
+        $this->fadeEffect = false;
+        $this->style = 'nav-tabs';
+        $this->tab = null;
+
+        return $this;
+    }
+
     protected function render()
     {
         $html = '';

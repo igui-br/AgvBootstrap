@@ -43,7 +43,7 @@ class SearchPanel extends AbstractHelper
      * Set Form
      *
      * @param \Zend\Form\Form $form
-     * @return \AgvBootstrap\Form\View\Helper\SearchPanel
+     * @return \AgvBootstrap\View\Helper\SearchPanel
      */
     public function setForm(\Zend\Form\Form $form)
     {
@@ -76,7 +76,7 @@ class SearchPanel extends AbstractHelper
      * Set class
      *
      * @param string $class
-     * @return \AgvBootstrap\Form\View\Helper\SearchPanel
+     * @return \AgvBootstrap\View\Helper\SearchPanel
      */
     public function setClass($class)
     {
@@ -93,6 +93,24 @@ class SearchPanel extends AbstractHelper
     public function getClass()
     {
         return $this->class;
+    }
+
+    /**
+     * Reset attributes
+     *
+     * @return \AgvBootstrap\View\Helper\SearchPanel
+     */
+    protected function reset()
+    {
+        $this->class = 'panel-default';
+        $this->title = 'Search';
+        $this->indent = null;
+        $this->hidden = false;
+        $this->background = null;
+        $this->id = 'search';
+        $this->form = null;
+
+        return $this;
     }
 
     protected function render()

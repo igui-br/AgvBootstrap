@@ -104,6 +104,25 @@ class Panel extends AbstractHelper
         return $this->body;
     }
 
+    /**
+     * Reset attributes
+     *
+     * @return \AgvBootstrap\View\Helper\Panel
+     */
+    protected function reset()
+    {
+        $this->class = array('panel');
+        $this->titleSize = null;
+        $this->body = null;
+        $this->title = null;
+        $this->indent = null;
+        $this->hidden = false;
+        $this->background = null;
+        $this->id = null;
+
+        return $this;
+    }
+
     protected function render()
     {
         $html = '';
