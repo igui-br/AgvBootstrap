@@ -1,5 +1,4 @@
 <?php
-
 namespace AgvBootstrap\Form\View\Helper;
 
 use Zend\Form\View\Helper\FormSelect as ZendFormSelect;
@@ -50,27 +49,63 @@ class FormSelect extends ZendFormSelect
         }
         $this->validTagAttributes = $this->validSelectAttributes;
 
-        unset($attributes['size']);
-        $size = $element->getAttribute('size');
-        if (empty($size)) {
+        if (! $element->hasAttribute('grid') && ! $element->hasAttribute('offset')) {
             return sprintf(
                 '<select %s>%s</select>',
                 $this->createAttributesString($attributes),
                 $this->renderOptions($options, $value)
             );
         }
-       
-        if (!isset($attributes['class'])) {
-            $attributes['class'] = 'form-control';
+
+        $this->getClass($attributes);
+
+        $class = array();
+
+        if ($element->hasAttribute('grid')) {
+            $grid = $element->getAttribute('grid');
+
+            if (is_array($grid)) {
+                $class = array_merge($class, $grid);
+            } elseif (is_int($grid)) {
+                $class[] = sprintf('col-lg-%s col-md-%s col-sm-%s col-xs-%s', $grid, $grid, $grid, $grid);
+            } else {
+                $class[] = $grid;
+            }
         }
-        
+
+        if ($element->hasAttribute('offset')) {
+            $offset = $labelAttributes['offset'];
+
+            if (is_array($offset)) {
+                $class = array_merge($class, $offset);
+            } elseif (is_int($offset)) {
+                $class[] = sprintf('col-lg-offset-%s col-md-offset-%s col-sm-offset-%s col-xs-offset-%s', $offset, $offset, $offset, $offset);
+            } else {
+                $class[] = $offset;
+            }
+        }
+
+        $class = implode(' ', array_unique($class));
+
         return sprintf(
-            '<div class="col-lg-%s col-md-%s col-sm-%s col-xs-%s">
-                <select %s>%s</select>
-            </div>',
-            $size, $size, $size, $size,
+            '<div class="%s"><select %s>%s</select></div>' . PHP_EOL,
+            $class,
             $this->createAttributesString($attributes),
             $this->renderOptions($options, $value)
         );
+    }
+
+
+    public function getClass(&$attributes)
+    {
+        $class = (key_exists('class', $attributes) ? $attributes['class'] : null);
+        if (!empty($class)) {
+            $class = explode(' ', $class);
+            array_unshift($class, 'form-control');
+
+            $attributes['class'] = implode(' ', array_unique($class));
+        } else {
+            $attributes['class'] = 'form-control';
+        }
     }
 }
