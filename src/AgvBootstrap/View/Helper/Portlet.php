@@ -49,6 +49,13 @@ class Portlet extends AbstractHelper
     protected $footer;
 
     /**
+     * Collapse Portlet
+     *
+     * @var string
+     */
+    protected $collapse = 'in';
+
+    /**
      * Set Class Portlet
      *
      * @param string $class
@@ -134,6 +141,29 @@ class Portlet extends AbstractHelper
         return $this->footer;
     }
 
+    /**
+     * Set collapse
+     *
+     * @param string $collapse
+     * @return \AgvBootstrap\View\Helper\Portlet
+     */
+    public function setCollapse($collapse)
+    {
+        $this->collapse = $collapse;
+
+        return $this;
+    }
+
+    /**
+     * Get collapse
+     *
+     * @return string
+     */
+    public function getCollapse()
+    {
+        return $this->collapse;
+    }
+
     protected function render()
     {
         $html = '';
@@ -149,12 +179,12 @@ class Portlet extends AbstractHelper
         $html .= $this->getIndent() . '            <' . $this->getTitleSize() . '>' . $this->getTitle() . '</' . $this->getTitleSize() . '>' . PHP_EOL;
         $html .= $this->getIndent() . '        </div>' . PHP_EOL;
         $html .= $this->getIndent() . '        <div class="portlet-widgets">' . PHP_EOL;
-        $html .= $this->getIndent() . '            <a href="#' . $id . '" data-toggle="collapse"><i class="fa fa-chevron-down"></i></a>' . PHP_EOL;
+        $html .= $this->getIndent() . '            <a href="#' . $id . '" data-toggle="collapse"><i class="fa ' . ($this->getCollapse() == 'in' ? 'fa-chevron-down' : 'fa-chevron-up') . '"></i></a>' . PHP_EOL;
         $html .= $this->getIndent() . '        </div>' . PHP_EOL;
         $html .= $this->getIndent() . '        <div class="clearfix"></div>' . PHP_EOL;
         $html .= $this->getIndent() . '    </div>' . PHP_EOL;
 
-        $html .= $this->getIndent() . '    <div class="panel-collapse in" id="' . $id . '">' . PHP_EOL;
+        $html .= $this->getIndent() . '    <div class="portlet-collapse ' . $this->getCollapse() . '" id="' . $id . '">' . PHP_EOL;
 
         $html .= $this->getIndent() . '        <div class="portlet-body">' . PHP_EOL;
         $html .= $this->getBody();

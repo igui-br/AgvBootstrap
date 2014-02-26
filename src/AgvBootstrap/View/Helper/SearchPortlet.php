@@ -40,6 +40,13 @@ class SearchPortlet extends AbstractHelper
     protected $class = 'portlet-default';
 
     /**
+     * Collapse Portlet
+     *
+     * @var string
+     */
+    protected $collapse = 'in';
+
+    /**
      * Set Form
      *
      * @param \Zend\Form\Form $form
@@ -95,6 +102,29 @@ class SearchPortlet extends AbstractHelper
         return $this->class;
     }
 
+    /**
+     * Set collapse
+     *
+     * @param string $collapse
+     * @return \AgvBootstrap\View\Helper\Portlet
+     */
+    public function setCollapse($collapse)
+    {
+        $this->collapse = $collapse;
+
+        return $this;
+    }
+
+    /**
+     * Get collapse
+     *
+     * @return string
+     */
+    public function getCollapse()
+    {
+        return $this->collapse;
+    }
+
     protected function render()
     {
         $view = $this->getView();
@@ -105,6 +135,7 @@ class SearchPortlet extends AbstractHelper
             'id' => $this->getId(),
             'title' => $this->getTitle(),
             'class' => $this->getClass(),
+            'collapse' => $this->getCollapse(),
             'hidden' => $this->getHidden(),
             'body' => $view->form($this->getForm())
         );
