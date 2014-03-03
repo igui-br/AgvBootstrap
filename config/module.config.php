@@ -12,7 +12,6 @@ return array(
             'formSubmit' => 'AgvBootstrap\Form\View\Helper\FormSubmit',
             'formButton' => 'AgvBootstrap\Form\View\Helper\FormButton',
             'formActions' => 'AgvBootstrap\Form\View\Helper\FormActions',
-            'formRadio' => 'AgvBootstrap\Form\View\Helper\FormRadio',
             'formText' => 'AgvBootstrap\Form\View\Helper\FormText',
             'formTextarea' => 'AgvBootstrap\Form\View\Helper\FormTextarea',
             'formSelect' => 'AgvBootstrap\Form\View\Helper\FormSelect',
