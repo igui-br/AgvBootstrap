@@ -12,10 +12,10 @@ use Zend\Navigation\Page\AbstractPage;
  */
 abstract class AbstractNavigationHelper extends AbstractHelper
 {
-    
+
     const ALIGN_RIGHT = 'right';
     const ALIGN_LEFT = 'left';
-    
+
     /**
      * Render the brand header
      * @param Zend\Navigation\Page\AbstractPage $brand
@@ -25,16 +25,17 @@ abstract class AbstractNavigationHelper extends AbstractHelper
     {
         $html = '';
         $html .= PHP_EOL . '<div class="navbar-header">';
-        $html .= PHP_EOL . '<button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse" type="button">';
-        $html .= PHP_EOL . '<span class="icon-bar"></span>';
-        $html .= PHP_EOL . '<span class="icon-bar"></span>';
-        $html .= PHP_EOL . '<span class="icon-bar"></span>';
-        $html .= PHP_EOL . '</button>';
+        $html .= PHP_EOL . '    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse" type="button">';
+        $html .= PHP_EOL . '        <span class="icon-bar"></span>';
+        $html .= PHP_EOL . '        <span class="icon-bar"></span>';
+        $html .= PHP_EOL . '        <span class="icon-bar"></span>';
+        $html .= PHP_EOL . '    </button>';
 
         if ($brand instanceof AbstractPage) {
             $view = $this->getView();
             $brandName = $view->escapeHtml($brand->getLabel());
-            $html .= PHP_EOL . '<a class="navbar-brand" href="' . $brand->get('Route') . '">' . $brandName . '</a>';
+            $href = $view->url($brand->getRoute());
+            $html .= PHP_EOL . '    <a class="navbar-brand" href="' . $href . '">' . $brandName . '</a>';
         }
 
         $html .= PHP_EOL . '</div>';
