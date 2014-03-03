@@ -112,7 +112,7 @@ class FormRow extends ZendFormRow
         if ($element instanceof Radio) {
             $rowClass = $this->rowClass;
 
-            $markup = sprintf('<fieldset><legend>%s</legend>%s</fieldset>', $label, $elementHelper->render($element));
+            $markup = sprintf('<fieldset class="multi-checkbox"><legend class=" ' . $element->getOption('class') . ' ">%s</legend>%s</fieldset>', $label, $elementHelper->render($element));
 
             $markup = $this->getDivRadioCheckboxHorizontal($markup);
         } elseif ($element instanceof MultiCheckbox) {
@@ -121,7 +121,7 @@ class FormRow extends ZendFormRow
                 'class' => 'checkbox'
             ));
 
-            $markup = sprintf('<fieldset><legend>%s</legend>%s</fieldset>', $label, $elementHelper->render($element));
+            $markup = sprintf('<fieldset class="multi-radio"><legend class=" ' . $element->getOption('class') . ' ">%s</legend>%s</fieldset>', $label, $elementHelper->render($element));
 
             $markup = $this->getDivRadioCheckboxHorizontal($markup);
         } elseif ($element instanceof Checkbox) {
