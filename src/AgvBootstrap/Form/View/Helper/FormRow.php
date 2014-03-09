@@ -136,7 +136,12 @@ class FormRow extends ZendFormRow
             return $elementHelper->render($element);
         } else if ($element instanceof Select) {
             $rowClass = $this->rowClass;
-            $element->setAttribute('class', $this->elementClass);
+            $elementClass = $element->getAttribute('class');
+            if (! empty($elementClass)) {
+                $elementClass .= ' ';
+            }
+            $elementClass .= $this->elementClass;
+            $element->setAttribute('class', $elementClass);
             $label = $labelHelper->openTag($this->getLabelAttributesByElement($element)) . $label . $labelHelper->closeTag();
             $markup = $label . $elementHelper->render($element);
         } else if ($element instanceof Submit || $element instanceof Button) {
