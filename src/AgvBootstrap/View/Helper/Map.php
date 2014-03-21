@@ -214,34 +214,7 @@ class Map extends AbstractHelper implements ServiceLocatorAwareInterface
 
         $html .= $this->getIndent() . '</script>' . PHP_EOL;
 
-//         $html .= $this->getIndent() . '<script type="text/javascript">' . PHP_EOL;
-//         $html .= $this->getIndent() . '$(document).ready(function () {' . PHP_EOL;
-//         $html .= $this->getIndent() . '$("#btnEndereco").click(function() {' . PHP_EOL;
-//         $html .= $this->getIndent() . 'if($(this).val() != "")' . PHP_EOL;
-//         $html .= $this->getIndent() . 'carregarNoMapa($("#txtEndereco").val()); });' . PHP_EOL;
-
-//         $html .= $this->getIndent() . '$("#txtEndereco").blur(function() {' . PHP_EOL;
-//         $html .= $this->getIndent() . 'if($(this).val() != "")' . PHP_EOL;
-//         $html .= $this->getIndent() . 'carregarNoMapa($(this).val()); });' . PHP_EOL;
-
-//         $html .= $this->getIndent() . '$("#txtEndereco").autocomplete({' . PHP_EOL;
-//         $html .= $this->getIndent() . 'source: function (request, response) {' . PHP_EOL;
-//         $html .= $this->getIndent() . 'geocoder.geocode({ "address": request.term + ,' . $this->country . ', "region": ' . $this->region .' }, function (results, status) {' . PHP_EOL;
-//         $html .= $this->getIndent() . 'response($.map(results, function (item) {' . PHP_EOL;
-//         $html .= $this->getIndent() . 'return {' . PHP_EOL;
-//         $html .= $this->getIndent() . 'label: item.formatted_address,' . PHP_EOL;
-//         $html .= $this->getIndent() . 'value: item.formatted_address,' . PHP_EOL;
-//         $html .= $this->getIndent() . 'latitude: item.geometry.location.lat(),' . PHP_EOL;
-//         $html .= $this->getIndent() . 'longitude: item.geometry.location.lng(),}; })); }); },' . PHP_EOL;
-//         $html .= $this->getIndent() . 'select: function (event, ui) {' . PHP_EOL;
-//         $html .= $this->getIndent() . '$("#txtLatitude").val(ui.item.latitude);' . PHP_EOL;
-//         $html .= $this->getIndent() . '$("#txtLongitude").val(ui.item.longitude);' . PHP_EOL;
-//         $html .= $this->getIndent() . 'var location = new google.maps.LatLng(ui.item.latitude, ui.item.longitude);' . PHP_EOL;
-//         $html .= $this->getIndent() . 'marker.setPosition(location);' . PHP_EOL;
-//         $html .= $this->getIndent() . 'map.setCenter(location);' . PHP_EOL;
-//         $html .= $this->getIndent() . 'map.setZoom(16); } }); });' . PHP_EOL;
-
-//         $html .= $this->getIndent() . '</script>' . PHP_EOL;
+        $this->getView()->inlineScript()->appendFile($this->getView()->basePath() . '/js/mapa.js');
 
         return $html;
 
