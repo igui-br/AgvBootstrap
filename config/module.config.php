@@ -23,7 +23,8 @@ return array(
             'portlet' => 'AgvBootstrap\View\Helper\Portlet',
             'tab' => 'AgvBootstrap\View\Helper\Tab',
             'tileButton' => 'AgvBootstrap\View\Helper\TileButton',
-            'navbar' => 'AgvBootstrap\View\Helper\Navigation\Navbar'
+            'navbar' => 'AgvBootstrap\View\Helper\Navigation\Navbar',
+            'map'  => 'AgvBootstrap\View\Helper\Map'
         )
     )
 );

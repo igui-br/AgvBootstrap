@@ -22,6 +22,13 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
         );
     }
 
+    public function preDispatch($e)
+    {
+        $sm = $e->getApplication()->getServiceManager();
+        $helper = $sm->get('viewhelpermanager')->get('map');
+        $helper->setServiceLocator($sm);
+    }
+
     public function getConfig()
     {
         return include __DIR__ . '/config/module.config.php';
