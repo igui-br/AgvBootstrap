@@ -16,7 +16,7 @@ class Map extends AbstractHelper implements ServiceLocatorAwareInterface
      *
      * @var decimal
      */
-    private $latcenter = 0;
+    private $latcenter;
 
     /**
      *
@@ -125,6 +125,9 @@ class Map extends AbstractHelper implements ServiceLocatorAwareInterface
 	 */
     protected function reset()
     {
+        $remote = new \Zend\Http\PhpEnvironment\RemoteAddress();
+        $validator = new \Zend\Validator\Ip();
+
         $this->animation = '';
         $this->class     = array();
         $this->country   = 'Brasil';
@@ -136,6 +139,14 @@ class Map extends AbstractHelper implements ServiceLocatorAwareInterface
         $this->title     = 'Igui Piscinas';
         $this->zoom      = 7;
         $this->draggable = 'false';
+
+        if ($this->getView()->geoip($remote->getIpAddress())->getLongitude()) {
+            $this->longcenter = $this->getView()->geoip($remote->getIpAddress())->getLongitude();
+            $this->latcenter = $this->getView()->geoip($remote->getIpAddress())->getLatitude();
+        } else {
+            $this->longcenter = '-53.44846132812495';
+            $this->latcenter = '-10.293316376424693';
+        }
 
         return $this;
     }

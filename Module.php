@@ -4,8 +4,9 @@ namespace AgvBootstrap;
 
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
+use Zend\ModuleManager\Feature\DependencyIndicatorInterface;
 
-class Module implements AutoloaderProviderInterface, ConfigProviderInterface
+class Module implements AutoloaderProviderInterface, ConfigProviderInterface, DependencyIndicatorInterface
 {
 
     public function getAutoloaderConfig()
@@ -32,6 +33,11 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
     public function getConfig()
     {
         return include __DIR__ . '/config/module.config.php';
+    }
+
+    public function getModuleDependencies()
+    {
+        return array('ZfSnapGeoip');
     }
 
 }
