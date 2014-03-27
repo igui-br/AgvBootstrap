@@ -24,7 +24,8 @@ return array(
             'tab' => 'AgvBootstrap\View\Helper\Tab',
             'tileButton' => 'AgvBootstrap\View\Helper\TileButton',
             'navbar' => 'AgvBootstrap\View\Helper\Navigation\Navbar',
-            'map'  => 'AgvBootstrap\View\Helper\Map'
+            'map'  => 'AgvBootstrap\View\Helper\Map',
+            'socialSignInButton' => 'AgvBootstrap\View\Helper\SocialSignInButton'
         )
     )
 );
