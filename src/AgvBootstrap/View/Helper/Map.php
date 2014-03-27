@@ -138,7 +138,7 @@ class Map extends AbstractHelper implements ServiceLocatorAwareInterface
         $this->width     = '350px';
         $this->title     = 'Igui Piscinas';
         $this->zoom      = 7;
-        $this->draggable = 'false';
+        $this->draggable = 'true';
 
         if ($this->getView()->geoip($remote->getIpAddress())->getLongitude()) {
             $this->longcenter = $this->getView()->geoip($remote->getIpAddress())->getLongitude();
@@ -157,15 +157,20 @@ class Map extends AbstractHelper implements ServiceLocatorAwareInterface
     protected function render()
     {
         $html  = '';
-        $html .= $this->getIndent() . '<fieldset>' . PHP_EOL;
         $html .= $this->getIndent() . '<div class="campo ' . implode(' ', $this->getClass()) . '">' . PHP_EOL;
         $html .= $this->getIndent() . '<label for="txtEndereco">Endereço:</label>' . PHP_EOL;
-        $html .= $this->getIndent() . '<input type="text" id="txtEndereco" name="txtEndereco" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true"/>' . PHP_EOL;
-        $html .= $this->getIndent() . '<input type="button" id="btnEndereco" name="btnEndereco" value="Mostrar no mapa" />' . PHP_EOL;
+
+        $html .= $this->getIndent() . '<div class="input-group">' . PHP_EOL;
+        $html .= $this->getIndent() . '<input type="text" id="txtEndereco" name="txtEndereco" class="ui-autocomplete-input input-larger form-control" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true"/>' . PHP_EOL;
+        $html .= $this->getIndent() . '<span class="input-group-btn">' . PHP_EOL;
+        $html .= $this->getIndent() . '<button class="btn btn-info btn-sm" type="button" btn-xs" id="btnEndereco" name="btnEndereco">Mostrar no mapa</button>' . PHP_EOL;
+        $html .= $this->getIndent() . '</span>' . PHP_EOL;
+        $html .= $this->getIndent() . '</div>' . PHP_EOL;
+
+        $html .= $this->getIndent() . '<hr/>' . PHP_EOL;
         $html .= $this->getIndent() . '<div id="mapa" style="height: '.$this->height.'; width: '.$this->width.'">' . PHP_EOL;
         $html .= $this->getIndent() . '</div>' . PHP_EOL;
         $html .= $this->getIndent() . '</div>' . PHP_EOL;
-        $html .= $this->getIndent() . '</fieldset>' . PHP_EOL;
 
         $html .= $this->getIndent() . '<ul class="ui-autocomplete ui-menu ui-widget ui-widget-content ui-corner-all" role="listbox" aria-activedescendant="ui-active-menuitem" style="z-index: 1; top: 0px; left: 0px; display: none;"> </ul>' . PHP_EOL;
 
@@ -198,15 +203,6 @@ class Map extends AbstractHelper implements ServiceLocatorAwareInterface
         $html .= $this->getIndent() . '}' . PHP_EOL;
 
         $html .= $this->getIndent() . 'initialize();' . PHP_EOL;
-
-        $html .= $this->getIndent() . 'google.maps.event.addListener(marker, "drag", function () {' . PHP_EOL;
-        $html .= $this->getIndent() . 'geocoder.geocode({ "latLng": marker.getPosition() }, function (results, status) {' . PHP_EOL;
-        $html .= $this->getIndent() . 'if (status == google.maps.GeocoderStatus.OK) {' . PHP_EOL;
-        $html .= $this->getIndent() . 'if (results[0]) {' . PHP_EOL;
-        $html .= $this->getIndent() . '$("#txtEndereco").val(results[0].formatted_address);' . PHP_EOL;
-        $html .= $this->getIndent() . '$("#latidude").val(marker.getPosition().lat());' . PHP_EOL;
-        $html .= $this->getIndent() . '$("#longitude").val(marker.getPosition().lng());' . PHP_EOL;
-        $html .= $this->getIndent() . '}}});});' . PHP_EOL;
 
         $html .= $this->getIndent() . 'function carregarNoMapa(endereco) {' . PHP_EOL;
         $html .= $this->getIndent() . 'geocoder.geocode({ "address": endereco + ", '.$this->country.'", "region": "'.$this->region.'" }, function (results, status) {' . PHP_EOL;
