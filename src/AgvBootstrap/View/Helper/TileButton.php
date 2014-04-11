@@ -222,7 +222,7 @@ class TileButton extends AbstractHelper
         $attribs = array(
             'href' => $this->getUrl(),
             'id' => $this->getId(),
-            'class' => 'panel-stat3 ' . $this->getBackground() . ($this->getHidden() ? ' hidden-xs' : '')
+            'class' => 'panel-stat3 ' . $this->getBackground() . (null == $this->getValue() ? ' no-value' : '') . ($this->getHidden() ? ' hidden-xs' : '')
         );
 
         if (null != $this->getTarget())
