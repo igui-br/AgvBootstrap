@@ -75,9 +75,10 @@ class FormCollection extends ZendFormCollection
                                 $this->addButtonEvent)
                         . '" type="button" class="close"><i class="glyphicon glyphicon-plus"></i></button>';
             }
-        } elseif ($element instanceof Fieldset && $allowRemove) {
-            $removeButton = sprintf($this->removeButtonMarkup,
-                    $this->removeButtonEvent, $this->removeButtonContent);
+        }
+
+        if ($element instanceof Fieldset && $allowRemove) {
+            $removeButton = sprintf($this->removeButtonMarkup, $this->removeButtonEvent, $this->removeButtonContent);
         }
 
         $label = $element->getLabel();
@@ -103,7 +104,7 @@ class FormCollection extends ZendFormCollection
         }
 
         $markup = sprintf(
-                '<fieldset>%s%s</fieldset>', $wrapper, $markup
+                '<fieldset class="collection-item">%s%s</fieldset>', $wrapper, $markup
         );
 
         return $markup;
