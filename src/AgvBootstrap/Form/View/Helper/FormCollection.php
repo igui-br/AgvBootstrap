@@ -77,7 +77,7 @@ class FormCollection extends ZendFormCollection
             }
         }
 
-        if ($element instanceof Fieldset && $allowRemove) {
+        if ($element instanceof \Zend\Form\Fieldset && $allowRemove) {
             $removeButton = sprintf($this->removeButtonMarkup, $this->removeButtonEvent, $this->removeButtonContent);
         }
 
