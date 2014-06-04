@@ -15,6 +15,7 @@ return array(
             'formText' => 'AgvBootstrap\Form\View\Helper\FormText',
             'formTextarea' => 'AgvBootstrap\Form\View\Helper\FormTextarea',
             'formSelect' => 'AgvBootstrap\Form\View\Helper\FormSelect',
+            'formPassword' => 'AgvBootstrap\Form\View\Helper\FormPassword',
             'formElementErrors' => 'AgvBootstrap\Form\View\Helper\FormElementErrors',
             'searchPanel' => 'AgvBootstrap\View\Helper\SearchPanel',
             'searchPortlet' => 'AgvBootstrap\View\Helper\SearchPortlet',
