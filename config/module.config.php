@@ -7,6 +7,7 @@ return array(
             'form' => 'AgvBootstrap\Form\View\Helper\Form',
             'formRow' => 'AgvBootstrap\Form\View\Helper\FormRow',
             'formActions' => 'AgvBootstrap\Form\View\Helper\FormActions',
+            'formCheckbox' => 'AgvBootstrap\Form\View\Helper\FormCheckbox',
             'formCollection' => 'AgvBootstrap\Form\View\Helper\FormCollection',
             'formInput' => 'AgvBootstrap\Form\View\Helper\FormInput',
             'formSubmit' => 'AgvBootstrap\Form\View\Helper\FormSubmit',
