@@ -47,6 +47,9 @@ class FormTextarea extends ZendFormTextarea
         $content            = (string) $element->getValue();
         $escapeHtml         = $this->getEscapeHtmlHelper();
 
+        if (! isset($attributes['id']))
+            $attributes['id'] = $name;
+
         $size = $element->getAttribute('size');
         if (empty($size)) {
             return sprintf(
@@ -55,7 +58,7 @@ class FormTextarea extends ZendFormTextarea
                 $escapeHtml($content)
             );
         }
-        
+
         return sprintf(
             '<div class="col-lg-%s col-md-%s col-sm-%s col-xs-%s">
                     <textarea %s>%s</textarea>

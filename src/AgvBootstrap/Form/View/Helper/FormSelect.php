@@ -43,6 +43,9 @@ class FormSelect extends ZendFormSelect
         $attributes = $element->getAttributes();
         $value      = $this->validateMultiValue($element->getValue(), $attributes);
 
+        if (! isset($attributes['id']))
+            $attributes['id'] = $name;
+
         $attributes['name'] = $name;
         if (array_key_exists('multiple', $attributes) && $attributes['multiple']) {
             $attributes['name'] .= '[]';

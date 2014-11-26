@@ -36,6 +36,9 @@ class FormText extends ZendFormText
         $attributes['type'] = $this->getType($element);
         $attributes['value'] = $element->getValue();
 
+        if (! isset($attributes['id']))
+            $attributes['id'] = $name;
+
         if (! $element->hasAttribute('grid') && ! $element->hasAttribute('offset')) {
             return sprintf(
                 '<input %s%s',
