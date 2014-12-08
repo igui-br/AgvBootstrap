@@ -90,7 +90,7 @@ abstract class AbstractHelper extends AbstractHtmlElement
      */
     public function setHidden($bool = false)
     {
-        $this->hidden = is_bool($bool);
+        $this->hidden = is_bool($bool) ? $bool : false;
 
         return $this;
     }
