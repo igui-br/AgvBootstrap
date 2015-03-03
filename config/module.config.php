@@ -23,6 +23,7 @@ return array(
             'alert' => 'AgvBootstrap\View\Helper\Alert',
             'panel' => 'AgvBootstrap\View\Helper\Panel',
             'portlet' => 'AgvBootstrap\View\Helper\Portlet',
+            'callout' => 'AgvBootstrap\View\Helper\Callout',
             'tab' => 'AgvBootstrap\View\Helper\Tab',
             'tileButton' => 'AgvBootstrap\View\Helper\TileButton',
             'navbar' => 'AgvBootstrap\View\Helper\Navigation\Navbar',
